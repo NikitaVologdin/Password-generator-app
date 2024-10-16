@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script defer src="/js/range-input.js"></script>
+    <script defer src="/js/script.js"></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Password generator app</title>
+  </head>
+  <body>
+    <main>
+      <h1>Password Generator</h1>
+      <div class="app">
+        <div class="app__result result">
+          <input class="result__value" id="result" placeholder="P4$5W0rD!"></input>
+          <span class="result__copy-status" id="copy-status">COPIED</span>
+          <button class="result__button" id="copy">
+            copy result
+            <svg width="21" height="24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.341 3.091 17.909.659A2.25 2.25 0 0 0 16.319 0H8.25A2.25 2.25 0 0 0 6 2.25V4.5H2.25A2.25 2.25 0 0 0 0 6.75v15A2.25 2.25 0 0 0 2.25 24h10.5A2.25 2.25 0 0 0 15 21.75V19.5h3.75A2.25 2.25 0 0 0 21 17.25V4.682a2.25 2.25 0 0 0-.659-1.591ZM12.469 21.75H2.53a.281.281 0 0 1-.281-.281V7.03a.281.281 0 0 1 .281-.281H6v10.5a2.25 2.25 0 0 0 2.25 2.25h4.5v1.969a.282.282 0 0 1-.281.281Zm6-4.5H8.53a.281.281 0 0 1-.281-.281V2.53a.281.281 0 0 1 .281-.281H13.5v4.125c0 .621.504 1.125 1.125 1.125h4.125v9.469a.282.282 0 0 1-.281.281Zm.281-12h-3v-3h.451c.075 0 .147.03.2.082L18.667 4.6a.283.283 0 0 1 .082.199v.451Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="app__generator generator">
+          <div class="generator__character-length character-length">
+            <label for="characterLengthInput" class="character-length__label"
+              >Character Length
+                <input
+                  type="range"
+                  id="characterLengthInput"
+                  min="0"
+                  max="20"
+                  step="0.1"
+                  class="character-length__range"
+                />
+              </label>
+              <label for="hiddenGroup" aria-hidden="true">
+                <input type="text" value="10" size="0" id="hiddenGroup"/>
+              </label>
+            <span id="characterLengthSpan">10</span>
+          </div>
+          <div class="generator__settings settings" id="settings">
+            <label for="uppercase" class="settings__container container">
+              <input
+                type="checkbox"
+                name="uppercase"
+                id="uppercase"
+                class="container__input"
+              />
+              <span class="container__checkbox"></span>
+              Include Uppercase Letters
+            </label>
+            <label for="lowercase" class="settings__container container">
+              <input
+                type="checkbox"
+                name="lowercase"
+                id="lowercase"
+                class="container__input"
+                checked
+              />
+              <span class="container__checkbox"></span>
+              Include Lowercase Letters
+            </label>
+            <label for="numbers" class="settings__container container">
+              <input
+                type="checkbox"
+                name="numbers"
+                id="numbers"
+                class="container__input"
+              />
+              <span class="container__checkbox"></span>
+              Include numbers
+            </label>
+            <label for="symbols" class="settings__container container">
+              <input
+                type="checkbox"
+                name="symbols"
+                id="symbols"
+                class="container__input"
+              />
+              <span class="container__checkbox"></span>
+              Include symbols
+            </label>
+          </div>
+          <div class="generator__strength strength">
+            <h2>strength</h2>
+            <span id="strength"></span>
+            <div class="strength__levels levels" id="level">
+              <div class="levels_red"></div>
+              <div class="level_orange"></div>
+              <div class="level_yellow"></div>
+              <div class="level_green"></div>
+            </div>
+          </div>
+          <button class="generator__button button" id="submit">
+            generate
+            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill=""
+                d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

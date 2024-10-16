@@ -1,0 +1,30 @@
+{
+  "name": "password-generator-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikitaVologdin/Password-generator-app.git"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "browser-sync": "^3.0.2",
+    "gulp": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-pxtorem": "^3.0.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.78.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikitaVologdin/Password-generator-app/issues"
+  },
+  "homepage": "https://github.com/NikitaVologdin/Password-generator-app#readme",
+  "dependencies": {}
+}

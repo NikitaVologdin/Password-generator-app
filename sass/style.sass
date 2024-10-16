@@ -1,0 +1,327 @@
+@use "_fonts"
+@import "_variables"
+
+html, body
+    height: 100%
+
+body 
+    font-family: "JetBrains Mono", monospace
+    font-optical-sizing: auto
+    display: flex
+    background-color: #08070B
+    justify-content: center
+    align-items: center
+
+main
+    padding: 0 16px
+    display: flex
+    flex-direction: column
+    gap: 16px
+
+h1
+    color: $slate
+    font-size: 16px
+    font-weight: 700
+    text-align: center
+
+button
+    background-color: transparent
+    border: none
+    cursor: pointer
+    padding: 0px
+    
+
+.invisible
+    visibility: hidden
+    position: absolute
+    top: 0
+    right: 0
+
+.app
+    color: $silver-white
+    max-width: 343px
+    &__result
+        margin-bottom: 16px
+
+.result
+    padding: 16px
+    display: flex
+    align-items: center
+    background-color: $coal-black
+    position: relative
+    &__value
+        margin-right: auto
+        height: 32px
+        border: none
+        background-color: transparent
+        color: $silver-white
+        @include text-heading-m
+        &:focus
+            outline: none
+    &__copy-status
+        opacity: 0
+        margin-right: 16px
+        font-size: 18px
+        font-weight: 700
+        color: $green
+        z-index: 1
+        position: absolute
+        right: 36px
+        transition: opacity .7s ease-in
+        &.visible
+            opacity: 1
+    &__button
+        fill: $green
+        padding: 5px
+        position: absolute
+        right: 16px
+        font-size: 0px
+        &:active
+            fill: $silver-white
+.generator
+    background-color: $coal-black
+    padding: 16px
+    &__settings
+        margin-top: 44px
+    &__strength
+        margin-top: 32px
+    &__button
+        margin-top: 16px
+
+.character-length
+    position: relative
+    &__range
+        margin-top: 18px
+        &:hover input[type="range"]::-webkit-slider-thumb
+            background: $dark-black
+            border-color: $green
+    
+    &__label, &__range
+        display: block
+    
+    input[type="range"]
+        -webkit-appearance: none
+        -moz-appearance: none
+        width: 100%
+        height: 5px
+        padding: 0
+        border-radius: 2px
+        outline: none
+        cursor: pointer
+        &::-webkit-slider-thumb 
+            -webkit-appearance: none
+            -moz-appearance: none
+            -webkit-border-radius: 5px
+            height: 28px
+            width: 28px
+            border-radius: 50px
+            background: #e7e7e7
+            border: 2px solid transparent
+        &::-moz-range-thumb, &::-ms-thumb 
+            -webkit-appearance: none
+            -moz-appearance: none
+            -webkit-border-radius: 5px
+            height: 26px
+            width: 26px
+            border-radius: 50px
+            background: #e7e7e7
+            border: 2px solid transparent
+        &::-ms-track
+            width: 100%
+            height: 5px
+            border-radius: 2px
+            cursor: pointer
+            background: transparent
+            border-color: transparent
+            border-width: 2px 0
+            color: transparent
+        &::-ms-fill-lower 
+            background: $green
+            border-radius: 2px
+
+        &::-ms-fill-upper 
+            background: $dark-black
+            border-radius: 2px
+
+        &::-ms-tooltip 
+            display: none
+
+    input[type="text"]
+        border: none
+        display:  none
+
+    span
+        position: absolute
+        top: 0
+        right: 0
+        @include text-heading-m
+        color: $green
+.settings
+    display: flex
+    flex-direction: column
+    gap: 13px
+
+    .container
+        display: flex
+        align-items: center
+        position: relative
+        padding-left: 40px
+        cursor: pointer
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+        font-weight: 700
+    .container__input
+        position: absolute
+        z-index: -1 
+        opacity: 0  
+    .container__checkbox
+        position: absolute
+        top: 2px
+        left: 0
+        height: 20px
+        width: 20px
+        background-color: $dark-black
+        border: 2px solid $silver-white
+        transition: all .3s ease-in
+
+    .container:hover .container__input ~ .container__checkbox
+        border-color: $green
+    
+    .container .container__input:checked ~ .container__checkbox 
+        background-color: $green
+
+    .container__checkbox:after 
+        content: ""
+        position: absolute
+        display: none
+    
+    .container .container__input:checked ~ .container__checkbox:after 
+        display: block
+    
+    .container .container__checkbox:after 
+        width: 100%
+        height: 100%
+        background-image: url("/assets/images/icon-check.svg")
+        background-repeat: no-repeat
+        background-position: center
+    
+.strength
+    background-color: $dark-black
+    padding: 16px 16px
+    display: flex
+    align-items: center
+    text-transform: uppercase
+    font-weight: 700
+    h2
+        font-size: 16px
+        color: $slate
+    span
+        color: $silver-white
+        @include text-body
+        width: 135px
+        height: 32px
+        line-height: 32px
+        text-align: right
+    &__levels
+        margin-left: 16px
+
+.levels
+    display: flex
+    align-items: center
+    gap: 8px
+    div
+        width: 10px
+        height: 28px
+        border: 2px solid $silver-white
+        background-color: $dark-black
+        &.red
+            background-color: $red
+        &.orange
+            background-color: $orange
+        &.yellow
+            background-color: $yellow
+        &.green
+            background-color: $green
+
+.button
+    height: 56px
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    text-transform: uppercase
+    gap: 16px
+    background-color: $green
+    color: $coal-black
+    border: 1px solid transparent
+    font-weight: 700
+    transition: all .3s ease-in
+    &:hover
+        background-color: $coal-black
+        color: $green
+        border-color: $green
+    &:hover svg
+        fill: $green
+    svg
+        transition: all .3s ease-in
+
+
+
+@media screen and (min-width: 768px)
+    main
+        gap: 31px
+    h1
+        font-size: 24px
+    .app
+        min-width: 540px
+
+    .result
+        margin-bottom: 24px
+        padding: 19px 32px
+        &__value
+            @include text-heading-l
+        &__copy-status
+            right: 52px
+        &__button
+            right: 32px
+        h2
+            @include text-heading-l
+            height: 36px
+        img
+            width: 21px
+            height: 24px
+    .generator
+        padding: 24px 32px
+        &__settings
+            margin-top: 40px
+        &__button
+            margin-top: 32px
+    .character-length
+        &__range
+            margin-top: 40px
+        label
+            @include text-body
+            padding-top: 10px
+        span
+            @include text-heading-l
+    .settings
+        gap: 20px
+        label
+            @include text-body
+    .strength
+        padding: 24px 32px
+        h2
+            @include text-body
+            margin-right: auto
+        span
+            @include text-heading-m
+    .button
+         @include text-body
+@media screen and (min-width: 1024px)
+    .button
+        padding: 30px 0 29px 0
+        gap: 25px
+            
+        

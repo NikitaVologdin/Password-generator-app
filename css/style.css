@@ -1,0 +1,482 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+    margin: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf") format("ttf");
+  src: url("/assets/fonts/JetBrainsMono-VariableFont_wght.ttf") format("ttf") tech("variations");
+  font-weight: 100 800;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  display: flex;
+  background-color: #08070B;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+h1 {
+  color: #817D92;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.invisible {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.app {
+  color: #E6E5EA;
+  max-width: 21.4375rem;
+}
+.app__result {
+  margin-bottom: 1rem;
+}
+
+.result {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #24232C;
+  position: relative;
+}
+.result__value {
+  margin-right: auto;
+  height: 2rem;
+  border: none;
+  background-color: transparent;
+  color: #E6E5EA;
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+  font-weight: 700;
+}
+.result__value:focus {
+  outline: none;
+}
+.result__copy-status {
+  opacity: 0;
+  margin-right: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #A4FFAF;
+  z-index: 1;
+  position: absolute;
+  right: 2.25rem;
+  transition: opacity 0.7s ease-in;
+}
+.result__copy-status.visible {
+  opacity: 1;
+}
+.result__button {
+  fill: #A4FFAF;
+  padding: 0.3125rem;
+  position: absolute;
+  right: 1rem;
+  font-size: 0;
+}
+.result__button:active {
+  fill: #E6E5EA;
+}
+
+.generator {
+  background-color: #24232C;
+  padding: 1rem;
+}
+.generator__settings {
+  margin-top: 2.75rem;
+}
+.generator__strength {
+  margin-top: 2rem;
+}
+.generator__button {
+  margin-top: 1rem;
+}
+
+.character-length {
+  position: relative;
+}
+.character-length__range {
+  margin-top: 1.125rem;
+}
+.character-length__range:hover input[type=range]::-webkit-slider-thumb {
+  background: #18171F;
+  border-color: #A4FFAF;
+}
+.character-length__label, .character-length__range {
+  display: block;
+}
+.character-length input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 0.3125rem;
+  padding: 0;
+  border-radius: 0.125rem;
+  outline: none;
+  cursor: pointer;
+}
+.character-length input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 0.3125rem;
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 3.125rem;
+  background: #e7e7e7;
+  border: 0.125rem solid transparent;
+}
+.character-length input[type=range]::-moz-range-thumb, .character-length input[type=range]::-ms-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 0.3125rem;
+  height: 1.625rem;
+  width: 1.625rem;
+  border-radius: 3.125rem;
+  background: #e7e7e7;
+  border: 0.125rem solid transparent;
+}
+.character-length input[type=range]::-ms-track {
+  width: 100%;
+  height: 0.3125rem;
+  border-radius: 0.125rem;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 0.125rem 0;
+  color: transparent;
+}
+.character-length input[type=range]::-ms-fill-lower {
+  background: #A4FFAF;
+  border-radius: 0.125rem;
+}
+.character-length input[type=range]::-ms-fill-upper {
+  background: #18171F;
+  border-radius: 0.125rem;
+}
+.character-length input[type=range]::-ms-tooltip {
+  display: none;
+}
+.character-length input[type=text] {
+  border: none;
+  display: none;
+}
+.character-length span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+  font-weight: 700;
+  color: #A4FFAF;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8125rem;
+}
+.settings .container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 2.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: 700;
+}
+.settings .container__input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.settings .container__checkbox {
+  position: absolute;
+  top: 0.125rem;
+  left: 0;
+  height: 1.25rem;
+  width: 1.25rem;
+  background-color: #18171F;
+  border: 0.125rem solid #E6E5EA;
+  transition: all 0.3s ease-in;
+}
+.settings .container:hover .container__input ~ .container__checkbox {
+  border-color: #A4FFAF;
+}
+.settings .container .container__input:checked ~ .container__checkbox {
+  background-color: #A4FFAF;
+}
+.settings .container__checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.settings .container .container__input:checked ~ .container__checkbox:after {
+  display: block;
+}
+.settings .container .container__checkbox:after {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/images/icon-check.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.strength {
+  background-color: #18171F;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.strength h2 {
+  font-size: 1rem;
+  color: #817D92;
+}
+.strength span {
+  color: #E6E5EA;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+  font-weight: 700;
+  width: 8.4375rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: right;
+}
+.strength__levels {
+  margin-left: 1rem;
+}
+
+.levels {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.levels div {
+  width: 0.625rem;
+  height: 1.75rem;
+  border: 0.125rem solid #E6E5EA;
+  background-color: #18171F;
+}
+.levels div.red {
+  background-color: #F64A4A;
+}
+.levels div.orange {
+  background-color: #FB7C58;
+}
+.levels div.yellow {
+  background-color: #F8CD65;
+}
+.levels div.green {
+  background-color: #A4FFAF;
+}
+
+.button {
+  height: 3.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  gap: 1rem;
+  background-color: #A4FFAF;
+  color: #24232C;
+  border: 0.0625rem solid transparent;
+  font-weight: 700;
+  transition: all 0.3s ease-in;
+}
+.button:hover {
+  background-color: #24232C;
+  color: #A4FFAF;
+  border-color: #A4FFAF;
+}
+.button:hover svg {
+  fill: #A4FFAF;
+}
+.button svg {
+  transition: all 0.3s ease-in;
+}
+
+@media screen and (min-width: 48rem) {
+  main {
+    gap: 1.9375rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .app {
+    min-width: 33.75rem;
+  }
+  .result {
+    margin-bottom: 1.5rem;
+    padding: 1.1875rem 2rem;
+  }
+  .result__value {
+    font-size: 2rem;
+    line-height: 2.6875rem;
+    font-weight: 700;
+  }
+  .result__copy-status {
+    right: 3.25rem;
+  }
+  .result__button {
+    right: 2rem;
+  }
+  .result h2 {
+    font-size: 2rem;
+    line-height: 2.6875rem;
+    font-weight: 700;
+    height: 2.25rem;
+  }
+  .result img {
+    width: 1.3125rem;
+    height: 1.5rem;
+  }
+  .generator {
+    padding: 1.5rem 2rem;
+  }
+  .generator__settings {
+    margin-top: 2.5rem;
+  }
+  .generator__button {
+    margin-top: 2rem;
+  }
+  .character-length__range {
+    margin-top: 2.5rem;
+  }
+  .character-length label {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-weight: 700;
+    padding-top: 0.625rem;
+  }
+  .character-length span {
+    font-size: 2rem;
+    line-height: 2.6875rem;
+    font-weight: 700;
+  }
+  .settings {
+    gap: 1.25rem;
+  }
+  .settings label {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-weight: 700;
+  }
+  .strength {
+    padding: 1.5rem 2rem;
+  }
+  .strength h2 {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-weight: 700;
+    margin-right: auto;
+  }
+  .strength span {
+    font-size: 1.5rem;
+    line-height: 1.9375rem;
+    font-weight: 700;
+  }
+  .button {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-weight: 700;
+  }
+}
+@media screen and (min-width: 64rem) {
+  .button {
+    padding: 1.875rem 0 1.8125rem 0;
+    gap: 1.5625rem;
+  }
+}
