@@ -5,11 +5,36 @@ const concat = require("gulp-concat");
 const plumber = require("gulp-plumber");
 const browserSync = require("browser-sync").create();
 const pxToRem = require("gulp-pxtorem");
+const uglify = require("gulp-uglify");
+const pipeline = require("readable-stream").pipeline;
+const cleanCSS = require("gulp-clean-css");
+const sourcemaps = require("gulp-sourcemaps");
+const rename = require("gulp-rename");
 
 function catchErr(e) {
   console.log(e);
   this.emit("end");
 }
+
+const compressJS = () => {
+  return pipeline(
+    gulp.src("js/script.js"),
+    // sourcemaps.init(),
+    uglify(),
+    rename("script.min.js"),
+    gulp.dest("dist")
+  );
+};
+
+const compressCSS = () => {
+  return pipeline(
+    gulp.src("css/*.css"),
+    // sourcemaps.init(),
+    cleanCSS({ compatibility: "ie8" }),
+    rename("style.min.css"),
+    gulp.dest("dist")
+  );
+};
 
 const transpileSassToCss = (done) => {
   return gulp
@@ -28,6 +53,10 @@ const concatCss = () => {
     .pipe(concat("style.css"))
     .pipe(browserSync.stream())
     .pipe(gulp.dest("css"));
+};
+
+const concatJS = () => {
+  pipeline(gulp.src(["js/*.js"]), concat("script.js"), gulp.dest("js"));
 };
 
 const convertPixToRem = () => {
@@ -51,7 +80,14 @@ function browser() {
 const watchFiles = () => {
   gulp.watch(
     ["sass/**/*.sass"],
-    gulp.series(transpileSassToCss, concatCss, convertPixToRem)
+    gulp.series(
+      transpileSassToCss,
+      concatCss,
+      convertPixToRem,
+      compressCSS,
+      // concatJS
+      compressJS
+    )
   );
   gulp.watch(["./*.html"]).on("change", browserSync.reload);
 };

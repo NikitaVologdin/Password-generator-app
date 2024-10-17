@@ -29,13 +29,7 @@ button
     border: none
     cursor: pointer
     padding: 0px
-    
 
-.invisible
-    visibility: hidden
-    position: absolute
-    top: 0
-    right: 0
 
 .app
     color: $silver-white
@@ -56,8 +50,6 @@ button
         background-color: transparent
         color: $silver-white
         @include text-heading-m
-        &:focus
-            outline: none
     &__copy-status
         opacity: 0
         margin-right: 16px
@@ -67,17 +59,25 @@ button
         z-index: 1
         position: absolute
         right: 36px
-        transition: opacity .7s ease-in
         &.visible
+            visibility: visible
             opacity: 1
+            transition: opacity .5s linear
+
+        &.hidden
+            visibility: hidden
+            opacity: 0
+            transition: visibility 0s .4s, opacity .4s linear
+
     &__button
         fill: $green
         padding: 5px
         position: absolute
         right: 16px
         font-size: 0px
-        &:active
+        &:hover
             fill: $silver-white
+            transition: fill .3s ease
 .generator
     background-color: $coal-black
     padding: 16px
@@ -92,9 +92,11 @@ button
     position: relative
     &__range
         margin-top: 18px
+    &__label
         &:hover input[type="range"]::-webkit-slider-thumb
             background: $dark-black
             border-color: $green
+            transition: background .3s ease, border-color .3s ease
     
     &__label, &__range
         display: block
@@ -172,10 +174,12 @@ button
         -ms-user-select: none
         user-select: none
         font-weight: 700
+            
     .container__input
         position: absolute
         z-index: -1 
-        opacity: 0  
+        opacity: 0
+            
     .container__checkbox
         position: absolute
         top: 2px
@@ -184,7 +188,7 @@ button
         width: 20px
         background-color: $dark-black
         border: 2px solid $silver-white
-        transition: all .3s ease-in
+        transition: background-color .2s ease, border .2s ease
 
     .container:hover .container__input ~ .container__checkbox
         border-color: $green
@@ -257,7 +261,7 @@ button
     color: $coal-black
     border: 1px solid transparent
     font-weight: 700
-    transition: all .3s ease-in
+    transition: background-color .3s ease-in, color .3s ease-in, border-color .3s ease-in
     &:hover
         background-color: $coal-black
         color: $green
@@ -265,7 +269,7 @@ button
     &:hover svg
         fill: $green
     svg
-        transition: all .3s ease-in
+        transition: fill .3s ease-in
 
 
 

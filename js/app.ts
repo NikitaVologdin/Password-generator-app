@@ -49,15 +49,15 @@ class App {
     const password = this.result.value;
     const success = () => {
       if (password.length) {
-        this.renderValue(this.copySpan, "COPIED");
+        this.copySpan.classList.remove("hidden");
         this.copySpan.classList.add("visible");
-      } else {
-        return;
+
+        setTimeout(() => {
+          this.copySpan.classList.remove("visible");
+          this.copySpan.classList.add("hidden");
+        }, 1000);
       }
-      setTimeout(() => {
-        this.renderValue(this.copySpan, "");
-        this.copySpan.classList.remove("visible");
-      }, 1000);
+      return;
     };
 
     const failure = (err: Error) => {
